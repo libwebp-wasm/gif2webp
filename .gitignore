@@ -1,0 +1,27 @@
+# CMake 相关配置
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+# Node.js 相关配置
+node_modules
+
+# MacOS 相关配置
+.DS_Store
+
+# 日志相关配置
+*.log
+
+# 其他配置
+es
+lib
+dist
+public

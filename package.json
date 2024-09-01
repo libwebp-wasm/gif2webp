@@ -1,0 +1,45 @@
+{
+  "name": "@libwebp-wasm/gif2webp",
+  "version": "n/a",
+  "description": "A wasm version for gif2webp of libwebp",
+  "main": "lib/gif2webp.js",
+  "module": "es/gif2webp.js",
+  "unpkg": "dist/gif2webp.js",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build:rollup": "rollup -c",
+    "build:patch": "./scripts/build-patch.sh",
+    "build:mac:prepare": "./scripts/build-mac.sh",
+    "build:mac": "pnpm build:mac:prepare && pnpm build:rollup",
+    "build:example:gif2webp": "cd examples/gif2webp-example && pnpm build"
+  },
+  "engines": {
+    "pnpm": ">=9.9.0",
+    "node": ">=20.17.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/libwebp/gif2webp.git"
+  },
+  "keywords": [
+    "wasm",
+    "libwebp",
+    "emscripten"
+  ],
+  "author": "liuliang@w3ctech.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^14.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^2.78.1"
+  },
+  "sideEffects": false
+}
