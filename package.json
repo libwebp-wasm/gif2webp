@@ -17,9 +17,9 @@
   "scripts": {
     "build:rollup": "rollup -c",
     "build:patch": "./scripts/build-patch.sh",
+    "build:example": "cd example && pnpm build",
     "build:mac:prepare": "./scripts/build-mac.sh",
-    "build:mac": "pnpm build:mac:prepare && pnpm build:rollup",
-    "build:example:gif2webp": "cd examples/gif2webp-example && pnpm build"
+    "build:mac": "pnpm build:mac:prepare && pnpm build:rollup"
   },
   "engines": {
     "pnpm": ">=9.9.0",
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/libwebp/gif2webp.git"
+    "url": "git+ssh://git@github.com/libwebp-wasm/gif2webp.git"
   },
   "keywords": [
     "wasm",
