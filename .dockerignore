@@ -1,0 +1,11 @@
+*
+!.git
+!package.json
+!pnpm-lock.yaml
+!rollup.config.js
+!rollup.constant.js
+!patches
+!giflib
+!libwebp
+!docker/build.sh
+!src/**/*.js

@@ -22,8 +22,8 @@
     "build:mac": "pnpm build:mac:prepare && pnpm build:rollup"
   },
   "engines": {
-    "pnpm": ">=9.9.0",
-    "node": ">=20.17.0"
+    "pnpm": ">=9.12.2",
+    "node": ">=18.20.3"
   },
   "repository": {
     "type": "git",
@@ -41,5 +41,6 @@
     "@rollup/plugin-terser": "^0.4.4",
     "rollup": "^2.78.1"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "packageManager": "pnpm@9.12.2"
 }

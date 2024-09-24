@@ -12,7 +12,7 @@ index f3f4abe..d86b687 100644
  gif2rgb
  gifasm
 diff --git a/Makefile b/Makefile
-index 8497442..c939193 100644
+index 8497442..927b6f2 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -11,7 +11,7 @@
@@ -33,7 +33,24 @@ index 8497442..c939193 100644
  UHEADERS = getarg.h
  UOBJECTS = $(USOURCES:.c=.o)
  
-@@ -123,7 +123,7 @@ libutil.a: $(UOBJECTS) $(UHEADERS)
+@@ -106,7 +106,7 @@ $(LIBGIFSO): $(OBJECTS) $(HEADERS)
+ ifeq ($(UNAME), Darwin)
+ 	$(CC) $(CFLAGS) -dynamiclib -current_version $(LIBVER) $(OBJECTS) -o $(LIBGIFSO)
+ else
+-	$(CC) $(CFLAGS) $(CPPFLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,$(LIBGIFSOMAJOR) -o $(LIBGIFSO) $(OBJECTS)
++	$(CC) $(CFLAGS) -s SIDE_MODULE=1 $(CPPFLAGS) -o $(LIBGIFSO) $(OBJECTS)
+ endif
+ 
+ libgif.a: $(OBJECTS) $(HEADERS)
+@@ -116,14 +116,14 @@ $(LIBUTILSO): $(UOBJECTS) $(UHEADERS)
+ ifeq ($(UNAME), Darwin)
+ 	$(CC) $(CFLAGS) -dynamiclib -current_version $(LIBVER) $(OBJECTS) -o $(LIBUTILSO)
+ else
+-	$(CC) $(CFLAGS) $(CPPLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,$(LIBUTILMAJOR) -o $(LIBUTILSO) $(UOBJECTS)
++	$(CC) $(CFLAGS) -s SIDE_MODULE=1 $(CPPLAGS) -o $(LIBUTILSO) $(UOBJECTS)
+ endif
+ 
+ libutil.a: $(UOBJECTS) $(UHEADERS)
  	$(AR) rcs libutil.a $(UOBJECTS)
  
  clean:

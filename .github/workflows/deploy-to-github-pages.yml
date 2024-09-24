@@ -1,13 +1,18 @@
 name: Deploy To Github Pages
-permissions:
-  contents: write
+
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
+
 jobs:
   deploy:
-    concurrency: ci-${{ github.ref }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -16,7 +21,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          version: 9
+          version: 9.12.2
           run_install: false
 
       - name: Install Node.js

@@ -22,11 +22,29 @@ git submodule update --init --recursive --remote --rebase
 
 ### Build
 
-Currently, the build script only supports macOS, so the following build method is only applicable to macOS. Additionally, if you are using zsh, it is recommended to install [the dotenv plugin](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv) to enable features like setting environment variables if a .env file is present in the current directory.
+#### MacOS
+
+If you are using zsh, it is recommended to install [the dotenv plugin](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv) to enable features like setting environment variables if a .env file is present in the current directory.
 
 ```bash
 pnpm build:mac
 ```
+
+#### Docker
+
+##### Build Image
+
+```bash
+docker build -f ./docker/Dockerfile -t libwebp-wasm/gif2webp:latest .
+```
+
+##### Run Image
+
+```bash
+docker run --rm  -v dist:/gif2webp/dist -v es:/gif2webp/es -v lib:/gif2webp/lib libwebp-wasm/gif2webp
+```
+
+#### Other
 
 Note: The modification of upstream submodule project code is currently done by running the git apply command. Sometimes you need to commit your own changes in the submodule directory and manually generate the patch.
 

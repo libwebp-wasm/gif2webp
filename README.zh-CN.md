@@ -22,11 +22,29 @@ git submodule update --init --recursive --remote --rebase
 
 ### 构建
 
-由于目前的构建脚本只支持 MacOS，所以下面的构建方式只适用于 MacOS。另外，在使用 zsh 的情况下，推荐安装 [dotenv 插件](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv)，这样就可以实现一些功能，比如在当前目录存在 .env 文件的情况下设置环境变量。
+#### MacOS
+
+在使用 zsh 的情况下，推荐安装 [dotenv 插件](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv)，这样就可以实现一些功能，比如在当前目录存在 .env 文件的情况下设置环境变量。
 
 ```bash
 pnpm build:mac
 ```
+
+#### Docker
+
+##### 构建镜像
+
+```bash
+docker build -f ./docker/Dockerfile -t libwebp-wasm/gif2webp:latest .
+```
+
+##### 运行镜像
+
+```bash
+docker run --rm  -v dist:/gif2webp/dist -v es:/gif2webp/es -v lib:/gif2webp/lib libwebp-wasm/gif2webp
+```
+
+#### Other
 
 注意：现在是通过运行 `git apply` 命令的方式，实现修改上游 submodule 项目代码的目的。所以，有时候需要在 submodule 目录下提交自己的 commit，然后手动执行生成 patch 的操作。
 
