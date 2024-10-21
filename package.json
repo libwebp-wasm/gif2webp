@@ -1,6 +1,6 @@
 {
   "name": "@libwebp-wasm/gif2webp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A wasm version for gif2webp of libwebp",
   "main": "lib/gif2webp.js",
   "module": "es/gif2webp.js",
