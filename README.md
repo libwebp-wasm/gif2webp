@@ -1,4 +1,4 @@
-# Libwebp Wasm
+# Gif2Webp
 
 ## Introduction
 
@@ -12,7 +12,7 @@ The process of converting the [libwebp](https://github.com/webmproject/libwebp) 
 
 #### Toolchain
 
-This includes installing [emsdk](https://github.com/emscripten-core/emsdk), [cmake](https://cmake.org), and [pnpm](https://pnpm.io). For specific installation methods, refer to the [Emscripten official documentation](https://emscripten.org/docs/getting_started/downloads.html), [pnpm official documentation](https://pnpm.io/installation), and [installing cmake](https://juejin.cn/post/6844904024433491982#heading-6).
+This includes installing [emsdk](https://github.com/emscripten-core/emsdk), [cmake](https://cmake.org), and [pnpm](https://pnpm.io). For specific installation methods, refer to the [Emscripten official documentation](https://emscripten.org/docs/getting_started/downloads.html), [pnpm official documentation](https://pnpm.io/installation), and [installing cmake](https://gist.github.com/fscm/29fd23093221cf4d96ccfaac5a1a5c90).
 
 #### submodule
 
@@ -41,7 +41,7 @@ docker build -f ./docker/Dockerfile -t libwebp-wasm/gif2webp:latest .
 ##### Run Image
 
 ```bash
-docker run --rm  -v dist:/gif2webp/dist -v es:/gif2webp/es -v lib:/gif2webp/lib libwebp-wasm/gif2webp
+docker run --rm  -v $(pwd)/dist:/gif2webp/dist -v $(pwd)/es:/gif2webp/es -v $(pwd)/lib:/gif2webp/lib libwebp-wasm/gif2webp
 ```
 
 #### Other

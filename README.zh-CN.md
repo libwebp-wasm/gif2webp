@@ -1,4 +1,4 @@
-# Libwebp Wasm
+# Gif2Webp
 
 ## 介绍
 
@@ -41,10 +41,10 @@ docker build -f ./docker/Dockerfile -t libwebp-wasm/gif2webp:latest .
 ##### 运行镜像
 
 ```bash
-docker run --rm  -v dist:/gif2webp/dist -v es:/gif2webp/es -v lib:/gif2webp/lib libwebp-wasm/gif2webp
+docker run --rm  -v $(pwd)/dist:/gif2webp/dist -v $(pwd)/es:/gif2webp/es -v $(pwd)/lib:/gif2webp/lib libwebp-wasm/gif2webp
 ```
 
-#### Other
+#### 其它
 
 注意：现在是通过运行 `git apply` 命令的方式，实现修改上游 submodule 项目代码的目的。所以，有时候需要在 submodule 目录下提交自己的 commit，然后手动执行生成 patch 的操作。
 
