@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index a1ea7450c..a9f07c887 100644
+index d7e8963f2..c3412457f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -565,6 +565,22 @@ if(WEBP_BUILD_GIF2WEBP)
@@ -24,4 +24,4 @@ index a1ea7450c..a9f07c887 100644
 +  -s EXPORTED_RUNTIME_METHODS='[\"ccall\",\"cwrap\",\"FS\",\"stringToUTF8\",\"lengthBytesUTF8\",\"setValue\"]'")
    target_link_libraries(gif2webp exampleutil imageioutil webp libwebpmux
                          ${WEBP_DEP_GIF_LIBRARIES})
-   target_include_directories(gif2webp PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src)
+   target_include_directories(gif2webp PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src
