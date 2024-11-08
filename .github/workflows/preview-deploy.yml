@@ -30,7 +30,7 @@ jobs:
               run_id: ${{ github.event.workflow_run.id }},
             });
 
-            // { [name]: [conclusion] }, e.g. { 'build preview': 'success' }
+            // { [name]: [conclusion] }, e.g. { 'build site': 'success' }
             const jobs = (response.data?.jobs ?? []).reduce((acc, job) => {
               if(job?.status === 'completed' && 'name' in job && 'conclusion' in job) {
                 acc[job.name] = job.conclusion;
@@ -43,8 +43,8 @@ jobs:
 
             // the name here must be the same as `jobs.xxx.{name}` in preview-build.yml
             // set output
-            core.setOutput('build-success', jobs['build preview'] === 'success');
-            core.setOutput('build-failure', jobs['build preview'] === 'failure');
+            core.setOutput('build-success', jobs['build site'] === 'success');
+            core.setOutput('build-failure', jobs['build site'] === 'failure');
             return jobs;
 
   deploy-preview:
