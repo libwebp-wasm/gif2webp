@@ -42,7 +42,9 @@ jobs:
             if(total === 0) core.setFailed('no jobs found');
 
             // the name here must be the same as `jobs.xxx.{name}` in preview-build.yml
-            console.log(jobs['build site'], 'build site')
+            core.debug('start')
+            core.debug(jobs['build site'])
+            core.debug('end')
             // set output
             core.setOutput('build-success', jobs['build site'] === 'success');
             core.setOutput('build-failure', jobs['build site'] === 'failure');
