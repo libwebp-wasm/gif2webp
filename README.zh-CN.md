@@ -41,7 +41,7 @@ docker build -f ./docker/Dockerfile -t libwebp-wasm/gif2webp:latest .
 ##### 运行镜像
 
 ```bash
-docker run --rm  -v $(pwd)/dist:/gif2webp/dist -v $(pwd)/es:/gif2webp/es -v $(pwd)/lib:/gif2webp/lib libwebp-wasm/gif2webp
+docker run --rm  -v $(pwd)/dist:/gif2webp/dist -v $(pwd)/es:/gif2webp/es -v $(pwd)/lib:/gif2webp/lib libwebp-wasm/gif2webp:latest
 ```
 
 #### 其它
