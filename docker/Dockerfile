@@ -17,7 +17,7 @@ tar -xvf giflib-5.2.2.tar.gz && cd giflib-5.2.2 && make && make install
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.30.4/cmake-3.30.4-linux-x86_64.tar.gz && \
 tar -zxvf cmake-3.30.4-linux-x86_64.tar.gz --strip-components=1 -C /usr/local && rm cmake-3.30.4-linux-x86_64.tar.gz
 
-RUN corepack enable && corepack install --global pnpm@9.12.2
+RUN corepack enable && corepack install --global pnpm@9.15.0
 WORKDIR /gif2webp
 
 COPY . ./
