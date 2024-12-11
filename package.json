@@ -22,8 +22,8 @@
     "build:mac": "pnpm build:mac:prepare && pnpm build:rollup"
   },
   "engines": {
-    "pnpm": ">=9.12.2",
-    "node": ">=18.20.3"
+    "pnpm": ">=9.15.0",
+    "node": ">=20.17.0"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,9 @@
   "keywords": [
     "wasm",
     "libwebp",
-    "emscripten"
+    "gif2webp",
+    "emscripten",
+    "webassembly"
   ],
   "author": "liuliang@w3ctech.com",
   "license": "MIT",
@@ -42,5 +44,5 @@
     "rollup": "^2.78.1"
   },
   "sideEffects": false,
-  "packageManager": "pnpm@9.12.2"
+  "packageManager": "pnpm@9.15.0"
 }
