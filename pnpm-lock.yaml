@@ -21,8 +21,8 @@ importers:
   example:
     dependencies:
       '@libwebp-wasm/gif2webp':
-        specifier: ^1.0.6
-        version: 1.0.6
+        specifier: ^1.0.7
+        version: 1.0.7
       antd:
         specifier: ^5.20.5
         version: 5.20.5(date-fns@2.30.0)(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -352,8 +352,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@libwebp-wasm/gif2webp@1.0.6':
-    resolution: {integrity: sha512-Q8qOuzcjonyHBDGCCFLytDuMkJOxqRGJK3WzOiS8iBC0K54cOpCCiBPiflobz4Zyk4BNj63RZfwfwEunkDMT/g==}
+  '@libwebp-wasm/gif2webp@1.0.7':
+    resolution: {integrity: sha512-SEmFk+VlKnOnWluNdIjrbLwb+B3t+niMgVQuCNG3yhQx8Equg/s0FLFFb34doqy5x12dOvLGsn2F3xva9gGeGw==}
     engines: {node: '>=20.17.0', pnpm: '>=9.15.0'}
 
   '@rc-component/async-validator@5.0.4':
@@ -1508,7 +1508,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@libwebp-wasm/gif2webp@1.0.6': {}
+  '@libwebp-wasm/gif2webp@1.0.7': {}
 
   '@rc-component/async-validator@5.0.4':
     dependencies:
