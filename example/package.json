@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@libwebp-wasm/gif2webp": "^1.0.7",
+    "@libwebp-wasm/gif2webp": "^1.0.8",
     "antd": "^5.20.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
