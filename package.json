@@ -22,7 +22,7 @@
     "build:mac": "pnpm build:mac:prepare && pnpm build:rollup"
   },
   "engines": {
-    "pnpm": ">=9.15.0",
+    "pnpm": ">=10.4.1",
     "node": ">=20.17.0"
   },
   "repository": {
@@ -44,5 +44,10 @@
     "rollup": "^2.78.1"
   },
   "sideEffects": false,
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@10.4.1",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
 }
