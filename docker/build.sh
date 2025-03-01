@@ -33,7 +33,7 @@ fi
 
 echo "Configure the project using CMake"
 cd webp_js || exit 0
-emcmake cmake -DEMSCRIPTEN_FORCE_COMPILERS=ON -DCMAKE_BUILD_TYPE=Release -DWEBP_BUILD_WEBP_JS=OFF -DWEBP_BUILD_DWEBP=OFF -DWEBP_BUILD_CWEBP=OFF -DWEBP_BUILD_IMG2WEBP=OFF -DWEBP_BUILD_EXTRAS=OFF -DWEBP_BUILD_ANIM_UTILS=OFF -DWEBP_USE_THREAD=OFF -DZLIB_LIBRARY=/emsdk/upstream/emscripten/system/lib/libz.a -DZLIB_INCLUDE_DIR=/emsdk/upstream/emscripten/system/include -DCMAKE_C_FLAGS="-s USE_ZLIB=1 -s USE_LIBJPEG=1 -s USE_LIBPNG=1" -DGIF_LIBRARY="/gif2webp/giflib/libgif.a" -DGIF_INCLUDE_DIR=/usr/local/include -DJPEG_LIBRARY=/emsdk/upstream/emscripten/system/lib/libjpeg.a -DJPEG_INCLUDE_DIR=/emsdk/upstream/emscripten/system/include -DPNG_LIBRARY=/emsdk/upstream/emscripten/system/lib/libpng16.a -DPNG_PNG_INCLUDE_DIR==/emsdk/upstream/emscripten/system/include ../
+emcmake cmake -DEMSCRIPTEN_FORCE_COMPILERS=ON -DCMAKE_BUILD_TYPE=Release -DWEBP_BUILD_WEBP_JS=OFF -DWEBP_BUILD_DWEBP=OFF -DWEBP_BUILD_CWEBP=OFF -DWEBP_BUILD_IMG2WEBP=OFF -DWEBP_BUILD_EXTRAS=OFF -DWEBP_BUILD_ANIM_UTILS=OFF -DWEBP_USE_THREAD=OFF -DGIF_LIBRARY="/gif2webp/giflib/libgif.a" -DGIF_INCLUDE_DIR=/usr/local/include ../
 
 echo "Build wasm files"
 emmake make
