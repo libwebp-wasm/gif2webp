@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Install dependencies using Homebrew"
-brew install libpng jpeg giflib
+brew install giflib
 
 echo "Install dependencies using pnpm"
 pnpm install
@@ -19,54 +19,7 @@ do
   rm -rf "$dist" && mkdir "$dist"
 done
 
-cd libjpeg || exit 0
-
-echo "Dynamically update libjpeg"
-git apply --quiet --check ../patches/libjpeg.diff
-
-result0=$?
-if [ $result0 -eq 0 ]; then
-  git apply ../patches/libjpeg.diff
-else
-  echo "Failed to update libjpeg dynamically"
-  exit 1
-fi
-
-echo "Build libjpeg"
-emcmake cmake -DBUILD_STATIC=ON .
-emmake make clean && emmake make
-
-echo "Move libjpeg.a to jpeg/xxx/lib directory"
-jpegLibPath="$(brew --cellar jpeg)/$(brew list --versions jpeg | tr ' ' '\n' | tail -1)/lib"
-if [ -f "${jpegLibPath}/libjpeg.a.bak" ]; then
-  rm -f "${jpegLibPath}/libjpeg.a"
-else
-  mv "${jpegLibPath}/libjpeg.a" "${jpegLibPath}/libjpeg.a.bak"
-fi
-mv libjpeg.a "${jpegLibPath}/libjpeg.a"
-
-echo "Clean libjpeg build artifacts"
-emmake make clean && git stash -qu && git stash drop -q
-
-cd ../libpng || exit 0
-
-echo "Build libpng"
-emcmake cmake -DPNG_SHARED=OFF -DPNG_TESTS=OFF -DZLIB_LIBRARY=~/emsdk/upstream/emscripten/system/lib/libz.a -DZLIB_INCLUDE_DIR=~/emsdk/upstream/emscripten/system/include -DCMAKE_C_FLAGS="-s USE_ZLIB=1" .
-emmake make clean && emmake make
-
-echo "Move libpng.a to libpng/xxx/lib directory"
-libpngLibPath="$(brew --cellar libpng)/$(brew list --versions libpng | tr ' ' '\n' | tail -1)/lib"
-if [ -f "${libpngLibPath}/libpng16.a.bak" ]; then
-  rm -f "${libpngLibPath}/libpng16.a"
-else
-  mv "${libpngLibPath}/libpng16.a" "${libpngLibPath}/libpng16.a.bak"
-fi
-mv libpng16.a "${libpngLibPath}/libpng16.a"
-
-echo "Clean libpng build artifacts"
-emmake make clean && git stash -qu && git stash drop -q
-
-cd ../giflib || exit 0
+cd giflib || exit 0
 
 echo "Dynamically update giflib"
 git apply --quiet --check ../patches/giflib.diff
@@ -112,7 +65,7 @@ fi
 
 echo "Configure the project using CMake"
 cd webp_js || exit 0
-emcmake cmake -DEMSCRIPTEN_FORCE_COMPILERS=ON -DCMAKE_BUILD_TYPE=Release -DWEBP_BUILD_WEBP_JS=OFF -DWEBP_BUILD_DWEBP=OFF -DWEBP_BUILD_CWEBP=OFF -DWEBP_BUILD_IMG2WEBP=OFF -DWEBP_BUILD_EXTRAS=OFF -DWEBP_BUILD_ANIM_UTILS=OFF -DWEBP_USE_THREAD=OFF -DZLIB_LIBRARY=~/emsdk/upstream/emscripten/system/lib/libz.a -DZLIB_INCLUDE_DIR=~/emsdk/upstream/emscripten/system/include -DCMAKE_C_FLAGS="-s USE_ZLIB=1" -DGIF_LIBRARY="$(brew --prefix giflib)/lib/libgif.a" -DGIF_INCLUDE_DIR="$(brew --prefix giflib)/include" -DJPEG_LIBRARY="$(brew --prefix jpeg)/lib/libjpeg.a" -DJPEG_INCLUDE_DIR="$(brew --prefix jpeg)/include" -DPNG_LIBRARY="$(brew --prefix libpng)/lib/libpng16.a" -DPNG_PNG_INCLUDE_DIR="$(brew --prefix libpng)/include" ../
+emcmake cmake -DEMSCRIPTEN_FORCE_COMPILERS=ON -DCMAKE_BUILD_TYPE=Release -DWEBP_BUILD_WEBP_JS=OFF -DWEBP_BUILD_DWEBP=OFF -DWEBP_BUILD_CWEBP=OFF -DWEBP_BUILD_IMG2WEBP=OFF -DWEBP_BUILD_EXTRAS=OFF -DWEBP_BUILD_ANIM_UTILS=OFF -DWEBP_USE_THREAD=OFF -DCMAKE_C_FLAGS="-s USE_LIBPNG=1 -s USE_LIBJPEG=1" -DGIF_LIBRARY="$(brew --prefix giflib)/lib/libgif.a" -DGIF_INCLUDE_DIR="$(brew --prefix giflib)/include" ../
 
 echo "Build wasm files"
 emmake make

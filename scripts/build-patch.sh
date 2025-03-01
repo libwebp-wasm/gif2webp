@@ -5,6 +5,3 @@ git diff HEAD~1 HEAD > ../patches/libwebp.diff
 
 cd ../giflib || exit 0
 git diff HEAD~1 HEAD > ../patches/giflib.diff
-
-cd ../libjpeg || exit 0
-git diff HEAD~1 HEAD > ../patches/libjpeg.diff
