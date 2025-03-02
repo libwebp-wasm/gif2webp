@@ -21,7 +21,6 @@ export default function App() {
     }).then((instance) => {
       const fileReader = new FileReader()
 
-      fileReader.onerror = () => reject()
       fileReader.onload = ({ target: { result: elements } }) => {
         const [
           { name: sourceName } = fileRef.current,
@@ -42,6 +41,7 @@ export default function App() {
         )
         setUrl(URL.createObjectURL(getFileWithBlobData(instance, targetName)))
       }
+      fileReader.onerror = () => console.error('fileReader error')
 
       fileReader.readAsArrayBuffer(fileRef.current)
     })
@@ -72,7 +72,7 @@ export default function App() {
       </div>
       <output
         hidden={!url}
-        style={{ width: 412, paddingLeft: 11, paddingTop: 7 }}
+        style={{ display: 'block', width: 412, paddingLeft: 11, paddingTop: 7 }}
       >
         <img src={url} style={{ width: '100%' }} />
       </output>
