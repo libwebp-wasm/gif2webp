@@ -21,9 +21,8 @@ done
 
 cd giflib || exit 0
 
-echo "Dynamically update giflib"
+echo "Update giflib dynamically"
 git apply --quiet --check ../patches/giflib.diff
-
 result1=$?
 if [ $result1 -eq 0 ]; then
   git apply ../patches/giflib.diff
@@ -52,9 +51,8 @@ emmake make clean && git stash -qu && git stash drop -q
 
 cd ../libwebp || exit 0
 
-echo "Dynamically update libwebp"
+echo "Update libwebp dynamically"
 git apply --quiet --check ../patches/libwebp.diff
-
 result2=$?
 if [ $result2 -eq 0 ]; then
   git apply ../patches/libwebp.diff
@@ -70,7 +68,7 @@ emcmake cmake -DEMSCRIPTEN_FORCE_COMPILERS=ON -DCMAKE_BUILD_TYPE=Release -DWEBP_
 echo "Build wasm files"
 emmake make
 
-echo "Copy wasm and js files to gif2webp/lib and gif2webp/src"
+echo "Copy wasm files to gif2webp/lib, gif2webp/dist and gif2webp/es and copy js files to gif2webp/src"
 # https://superuser.com/a/503657/645165
 # https://stackoverflow.com/a/2193653/4441984
 # https://superuser.com/a/397325/645165

@@ -4,11 +4,10 @@ dists=('es' 'lib' 'dist')
 
 cd giflib || exit 0
 
-echo "Dynamically update giflib"
+echo "Update giflib dynamically"
 git apply --check ../patches/giflib.diff
-
-result0=$?
-if [ $result0 -eq 0 ]; then
+result1=$?
+if [ $result1 -eq 0 ]; then
   git apply ../patches/giflib.diff
 else
   echo "Failed to update giflib dynamically"
@@ -20,11 +19,10 @@ emmake make clean && emmake make
 
 cd ../libwebp || exit 0
 
-echo "Dynamically update libwebp"
+echo "Update libwebp dynamically"
 git apply --check ../patches/libwebp.diff
-
-result1=$?
-if [ $result1 -eq 0 ]; then
+result2=$?
+if [ $result2 -eq 0 ]; then
   git apply ../patches/libwebp.diff
 else
   echo "Failed to update libwebp dynamically"
@@ -38,13 +36,13 @@ emcmake cmake -DEMSCRIPTEN_FORCE_COMPILERS=ON -DCMAKE_BUILD_TYPE=Release -DWEBP_
 echo "Build wasm files"
 emmake make
 
-echo "Copy js files gif2webp/src"
+echo "Copy js files to gif2webp/src"
 # https://superuser.com/a/503657/645165
 # https://stackoverflow.com/a/2193653/4441984
 # https://superuser.com/a/397325/645165
 find . -maxdepth 1 \( -type f -name 'gif2webp.js' -not -name '*.worker.js' \) -print0 | xargs -0 -I {} cp -a {} ../../src
 
-cd ../../
+cd ../..
 pnpm fetch --frozen-lockfile && pnpm install --frozen-lockfile && pnpm build:rollup
 
 cd libwebp/webp_js || exit 0
@@ -56,5 +54,5 @@ do
 done
 
 echo "Clean libwebp/webp_js"
-cd ../
+cd ..
 rm -rf webp_js && git stash -qu && git stash drop -q
