@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index d7e8963f2..c3412457f 100644
+index c4db2b3e..a3bf752f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -565,6 +565,22 @@ if(WEBP_BUILD_GIF2WEBP)
+@@ -585,6 +585,22 @@ if(WEBP_BUILD_GIF2WEBP)
    parse_makefile_am(${CMAKE_CURRENT_SOURCE_DIR}/examples "GIF2WEBP_SRCS"
                      "gif2webp")
    add_executable(gif2webp ${GIF2WEBP_SRCS})
@@ -23,5 +23,5 @@ index d7e8963f2..c3412457f 100644
 +  -s EXPORTED_FUNCTIONS='[\"_main\",\"_malloc\",\"_DGifCloseFile\",\"_DGifGetExtension\",\"_DGifGetExtensionNext\",\"_DGifGetImageDesc\",\"_DGifGetLine\",\"_DGifGetRecordType\",\"_DGifOpenFileHandle\",\"_DGifOpenFileName\",\"_GifErrorString\"]' \
 +  -s EXPORTED_RUNTIME_METHODS='[\"ccall\",\"cwrap\",\"FS\",\"stringToUTF8\",\"lengthBytesUTF8\",\"setValue\"]'")
    target_link_libraries(gif2webp exampleutil imageioutil webp libwebpmux
-                         ${WEBP_DEP_GIF_LIBRARIES})
-   target_include_directories(gif2webp PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src
+                         GIF::GIF)
+   target_include_directories(gif2webp PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src)
