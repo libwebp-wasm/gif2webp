@@ -12,7 +12,7 @@ RUN apt update && apt upgrade -y \
     xmlto \
     imagemagick \
     build-essential
-RUN wget https://nchc.dl.sourceforge.net/project/giflib/giflib-5.2.2.tar.gz -O giflib-5.2.2.tar.gz && \
+RUN wget --no-check-certificate https://sourceforge.net/projects/giflib/files/giflib-5.2.2.tar.gz/download -O giflib-5.2.2.tar.gz && \
 tar -xvf giflib-5.2.2.tar.gz && cd giflib-5.2.2 && make && make install
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.30.4/cmake-3.30.4-linux-x86_64.tar.gz && \
 tar -zxvf cmake-3.30.4-linux-x86_64.tar.gz --strip-components=1 -C /usr/local && rm cmake-3.30.4-linux-x86_64.tar.gz
