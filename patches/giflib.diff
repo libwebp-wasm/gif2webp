@@ -1,5 +1,5 @@
 diff --git a/.gitignore b/.gitignore
-index f3f4abe..d86b687 100644
+index db6f1b9..f7fdcd9 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -4,6 +4,8 @@
@@ -12,28 +12,19 @@ index f3f4abe..d86b687 100644
  gif2rgb
  gifasm
 diff --git a/Makefile b/Makefile
-index 8497442..927b6f2 100644
+index f347162..17b3b25 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -11,7 +11,7 @@
+@@ -18,7 +18,7 @@ DOCDIR = $(PREFIX)/share/doc/giflib
  CC ?= gcc
- OFLAGS = -O0 -g
+ OFLAGS = -g -fno-inline #-fsanitize=address
  OFLAGS  = -O2
--CFLAGS  += -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
-+CFLAGS  += -std=gnu99 -fPIC -Wall -s USE_ZLIB=1 -Wno-format-truncation $(OFLAGS)
+-CFLAGS  += -std=gnu99 -fPIC -Wall $(OFLAGS)
++CFLAGS  += -std=gnu99 -fPIC -Wall -s USE_ZLIB=1 $(OFLAGS)
+ #LDFLAGS += -fsanitize=address
  
  SHELL = /bin/sh
- TAR = tar
-@@ -36,7 +36,7 @@ SOURCES = dgif_lib.c egif_lib.c gifalloc.c gif_err.c gif_font.c \
- HEADERS = gif_hash.h  gif_lib.h  gif_lib_private.h
- OBJECTS = $(SOURCES:.c=.o)
- 
--USOURCES = qprintf.c quantize.c getarg.c 
-+USOURCES = qprintf.c quantize.c getarg.c
- UHEADERS = getarg.h
- UOBJECTS = $(USOURCES:.c=.o)
- 
-@@ -106,7 +106,7 @@ $(LIBGIFSO): $(OBJECTS) $(HEADERS)
+@@ -125,7 +125,7 @@ $(LIBGIFSO): $(OBJECTS) $(HEADERS)
  ifeq ($(UNAME), Darwin)
  	$(CC) $(CFLAGS) -dynamiclib -current_version $(LIBVER) $(OBJECTS) -o $(LIBGIFSO)
  else
@@ -42,11 +33,11 @@ index 8497442..927b6f2 100644
  endif
  
  libgif.a: $(OBJECTS) $(HEADERS)
-@@ -116,14 +116,14 @@ $(LIBUTILSO): $(UOBJECTS) $(UHEADERS)
+@@ -135,14 +135,14 @@ $(LIBUTILSO): $(UOBJECTS) $(UHEADERS)
  ifeq ($(UNAME), Darwin)
- 	$(CC) $(CFLAGS) -dynamiclib -current_version $(LIBVER) $(OBJECTS) -o $(LIBUTILSO)
+ 	$(CC) $(CFLAGS) -dynamiclib -current_version $(LIBVER) $(UOBJECTS) -o $(LIBUTILSO)
  else
--	$(CC) $(CFLAGS) $(CPPLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,$(LIBUTILMAJOR) -o $(LIBUTILSO) $(UOBJECTS)
+-	$(CC) $(CFLAGS) $(CPPLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,$(LIBUTILSOMAJOR) -o $(LIBUTILSO) $(UOBJECTS)
 +	$(CC) $(CFLAGS) -s SIDE_MODULE=1 $(CPPLAGS) -o $(LIBUTILSO) $(UOBJECTS)
  endif
  
@@ -54,8 +45,8 @@ index 8497442..927b6f2 100644
  	$(AR) rcs libutil.a $(UOBJECTS)
  
  clean:
--	rm -f $(UTILS) $(TARGET) libgetarg.a libgif.a $(LIBGIFSO) libutil.a $(LIBUTILSO) *.o
-+	rm -f $(UTILS) $(TARGET) libgetarg.a libgif.a $(LIBGIFSO) libutil.a $(LIBUTILSO) *.o *.wasm
+-	rm -f $(UTILS) $(OBSOLETE_UTILS) $(TARGET) libgetarg.a $(SHARED_LIBS) $(STATIC_LIBS) *.o
++	rm -f $(UTILS) $(OBSOLETE_UTILS) $(TARGET) libgetarg.a $(SHARED_LIBS) $(STATIC_LIBS) *.o *.wasm
  	rm -f $(LIBGIFSOVER)
  	rm -f $(LIBGIFSOMAJOR)
  	$(MAKE) --quiet -C doc clean
